@@ -8,7 +8,7 @@ Making football more accessible to everyone outside of a traditional male audien
 
 ## Hosted on Heroku
 
-Visit our app here: https://kickabout-football.herokuapp.com/
+Visit our app [here](https://kickabout-football.herokuapp.com/)
 
 ## Planning
 #### Trello Board
