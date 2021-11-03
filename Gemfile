@@ -23,10 +23,12 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -46,8 +48,12 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
+  gem 'rspec'
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'simplecov-console'
+  gem 'rubocop'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
