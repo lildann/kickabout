@@ -1,8 +1,9 @@
 require "active_support/core_ext/integer/time"
+RAILS_ENV=production bundle exec rake db:create db:schema:load
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  
   # Code is not reloaded between requests.
   config.cache_classes = true
 
