@@ -16,10 +16,12 @@ ActiveRecord::Schema.define(version: 2021_11_03_155253) do
   enable_extension "plpgsql"
 
   create_table "game_players", force: :cascade do |t|
-    t.integer "game_id"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "games_id", null: false
+    t.bigint "users_id", null: false
+    t.index ["games_id"], name: "index_game_players_on_games_id"
+    t.index ["users_id"], name: "index_game_players_on_users_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -47,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_155253) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "game_players", "games"
-  add_foreign_key "game_players", "users"
+  add_foreign_key "game_players", "games", column: "games_id"
+  add_foreign_key "game_players", "users", column: "users_id"
   add_foreign_key "games", "users"
 end
