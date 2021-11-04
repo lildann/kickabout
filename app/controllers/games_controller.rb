@@ -1,7 +1,9 @@
 class GamesController < ApplicationController
-  
+  before_action :find_game, only: [:show] 
+
   def index
     @games = Game.all
+    @game_user = GameUser.new
   end
 
   def new
@@ -18,7 +20,15 @@ class GamesController < ApplicationController
     end
   end
 
+  def show
+  end
+
+
   private
+
+  def find_game
+    @game = Game.find(params[:id])
+  end
 
   def game_params
     params.require(:game).permit(:location, :description, :player_count, :datetime, :user_id)
@@ -26,3 +36,4 @@ class GamesController < ApplicationController
 end
 
 
+  

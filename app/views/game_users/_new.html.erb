@@ -1,0 +1,5 @@
+<%= form_with model: @game_user, url: game_users_path do |form| %>
+	<%= form.text_field :users_id, value:current_user.id  %>
+	<%= form.text_field :games_id, value:game.id  %>
+  <%= form.submit "Join Game" %>
+<% end %>

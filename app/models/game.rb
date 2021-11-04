@@ -1,4 +1,5 @@
 class Game < ApplicationRecord
   belongs_to :user, optional: true
-  # has_many :time, :description, :date, :player_count, :location
+  has_many :game_users
+  has_many :users, :through => :game_users
 end
