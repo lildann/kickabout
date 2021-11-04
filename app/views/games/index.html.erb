@@ -1,12 +1,14 @@
 <h1>KickAbout</h1>
 
-<%= link_to 'Add a game', new_game_path() %><br>
+<%= link_to 'Add a game', new_game_path %><br><br>
 
-<%= @games.each do |game| %>
-  <%= "GAME: #{game.player_count / 2} ASIDE" %>
-  <%= game.location %>
-  <%= game.datetime %>
-  <%= game.description %>
-   <% end %> 
+<% @games.each do |game| %>
+  <%= "GAME: #{game.player_count / 2} ASIDE" %><br>
+  <%= "PLAYERS: X /#{game.player_count}" %><br>
+  <%= "LOCATION: #{game.location}" %><br>
+  <%= "WHEN: #{game.datetime.localtime.strftime("%d/%m/%y @ %H:%M") }" %><br>
+  <%= "INFO: #{game.description}" %><br>
+<% end %> 
+
 
   			
