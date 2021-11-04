@@ -2,5 +2,11 @@
 
 <%= link_to 'Add a game', new_game_path() %><br>
 
+<%= @games.each do |game| %>
+  <%= "GAME: #{game.player_count / 2} ASIDE" %>
+  <%= game.location %>
+  <%= game.datetime %>
+  <%= game.description %>
+   <% end %> 
 
-  					
+  			
