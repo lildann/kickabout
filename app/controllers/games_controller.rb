@@ -10,17 +10,18 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    if @game.save 
-      redirect_to @game
-    else
+    if @game.save
+      redirect_to games_path
+    else 
       render :new
     end
-
   end
 
   private
 
   def game_params
-    params.require(:game).permit(:location, :description, :player_count, :datetime)
+    params.require(:game).permit(:location, :description, :player_count, :datetime, :user_id)
   end
 end
+
+

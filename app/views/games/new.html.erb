@@ -1,6 +1,8 @@
 ADD GAME PAGE
-<%= form_with url: "/search", method: :get do |form| %>
-  <%= form.label :query, "Search for:" %>
-  <%= form.text_field :query %>
-  <%= form.submit "Search" %>
+<%= form_with model: @game, url: games_path do |form| %>
+  <%= form.label :player_count, "Number of players:" %><%= form.number_field :player_count %><br>
+  <%= form.label :location, "Location:" %><%= form.text_field :location %><br>
+  <%= form.label :date, "Date and time:" %><%= form.datetime_field :datetime %><br>
+  <%= form.label :description, "Description:" %><%= form.text_field :description %><br>
+  <%= form.submit "Add Game" %>
 <% end %>
