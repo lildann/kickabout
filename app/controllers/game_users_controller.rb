@@ -9,12 +9,8 @@ class GameUsersController < ApplicationController
 	end
 
 	def create
-		@game_user = GameUser.new(game_user_params)
-		if @game_user.save
-			redirect_to games_path
-		else 
-			render :new
-		end
+		GameUser.new(game_user_params).save if !already_playing?
+		redirect_back fallback_location: games_url
 	end
 
   private
@@ -22,5 +18,14 @@ class GameUsersController < ApplicationController
   def game_user_params
     params.require(:game_user).permit(:games_id, :users_id)
   end
+
+	def find_players
+		@players = @game.game_users.find(params[:id])
+	end
+
+	def already_playing?
+		GameUser.where(users_id: current_user.id, games_id:
+			params["game_user"]["games_id"]).exists?
+	end
 end
 
