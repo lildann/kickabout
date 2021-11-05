@@ -1,0 +1,31 @@
+@mixin page-image($image) {
+	background-image: url($image);
+	background-size: cover;
+}
+
+@mixin banner($colour, $dropShadow){
+	height: 100%;
+	background-color: $colour;
+	box-shadow: 8px 8px 16px $dropShadow;
+	position: absolute;
+	width:20%;
+	padding: 10% 5%;
+}
+@mixin button($colour) {
+	background-color: $colour;
+	border-radius: 5px;
+	border: none;
+	padding:1%;
+}
+@mixin flex {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+}
+@mixin container {
+	background-color: $white;	
+	box-shadow: 8px 8px 16px #A27315;
+	border-radius: 20px;
+	padding: 1%;
+}

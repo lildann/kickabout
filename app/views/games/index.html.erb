@@ -4,6 +4,9 @@
 
 
 <% @games.each do |game| %>
+
+<section class="game-container">
+
   <%= "GAME: #{game.player_count / 2} ASIDE" %><br>
   <% current_players_count = GameUser.where(games_id: game.id).count %>
   <%= "PLAYERS: #{current_players_count} / #{game.player_count}" %><br>
@@ -26,5 +29,7 @@
       <%= form.submit "Join Game" %>
     <% end %>
   <% end %>
+</section>
+  
 <% end %> 
 
