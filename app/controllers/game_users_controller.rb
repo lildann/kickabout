@@ -19,10 +19,6 @@ class GameUsersController < ApplicationController
     params.require(:game_user).permit(:games_id, :users_id)
   end
 
-	def find_players
-		@players = @game.game_users.find(params[:id])
-	end
-
 	def already_playing?
 		GameUser.where(users_id: current_user.id, games_id:
 			params["game_user"]["games_id"]).exists?

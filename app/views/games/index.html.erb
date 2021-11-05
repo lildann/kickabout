@@ -4,9 +4,9 @@
 
 
 <% @games.each do |game| %>
-  <% current_players = 0 %>
   <%= "GAME: #{game.player_count / 2} ASIDE" %><br>
-  <%= "PLAYERS: #{current_players} / #{game.player_count}" %><br>
+  <% current_players = GameUser.where(games_id: game.id) %>
+  <%= "PLAYERS: #{current_players.count} / #{game.player_count}" %><br>
   <%= "LOCATION: #{game.location}" %><br>
   <%= "WHEN: #{game.datetime.localtime.strftime("%d/%m/%y @ %H:%M") }" %><br>
   <%= "INFO: #{game.description}" %><br>
