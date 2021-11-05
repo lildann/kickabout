@@ -1,8 +1,8 @@
 ADD GAME PAGE
-<%= form_with model: @game, url: games_path do |form| %>
-  <%= form.label :player_count, "Number of players:" %><%= form.number_field :player_count %><br>
-  <%= form.label :location, "Location:" %><%= form.text_field :location %><br>
-  <%= form.label :date, "Date and time:" %><%= form.datetime_field :datetime %><br>
-  <%= form.label :description, "Description:" %><%= form.text_field :description %><br>
+<%= form_with model: @game, url: games_path,, :html => {:class => 'form'} do |form| %>
+  <%= form.label :player_count, "Number of players:", class: %w(sr-only)  %><%= form.number_field :player_count, class: %w(input_text)  %><br>
+  <%= form.label :location, "Location:", class: %w(sr-only)  %><%= form.text_field :location, class: %w(input_text)  %><br>
+  <%= form.label :date, "Date and time:", class: %w(sr-only)  %><%= form.datetime_field :datetime, class: %w(input_text)  %><br>
+  <%= form.label :description, "Description:", class: %w(sr-only)  %><%= form.text_field :description, class: %w(input_text)  %><br>
   <%= form.submit "Add Game" %>
 <% end %>
