@@ -23,6 +23,10 @@ class GamesController < ApplicationController
   def show
   end
 
+	def find_players
+		@current_players = GameUser.where(games_id:
+			params["game_user"]["games_id"])
+	end
 
   private
 
