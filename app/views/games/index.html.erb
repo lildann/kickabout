@@ -4,17 +4,30 @@
 
 
 <% @games.each do |game| %>
+
 <section class="game-container">
-	<% current_players = 0 %>
+
   <%= "GAME: #{game.player_count / 2} ASIDE" %><br>
-  <%= "PLAYERS: #{current_players} / #{game.player_count}" %><br>
+  <% current_players_count = GameUser.where(games_id: game.id).count %>
+  <%= "PLAYERS: #{current_players_count} / #{game.player_count}" %><br>
   <%= "LOCATION: #{game.location}" %><br>
   <%= "WHEN: #{game.datetime.localtime.strftime("%d/%m/%y @ %H:%M") }" %><br>
   <%= "INFO: #{game.description}" %><br>
-  <%= form_with model: @game_user, url: game_users_path do |form| %>
-    <%= form.hidden_field :users_id, value:current_user.id  %>
-    <%= form.hidden_field :games_id, value:game.id  %>
-    <%= form.submit "Join Game" %>
+  <% if GameUser.where(users_id: current_user.id, 
+    games_id: game.id).exists? %>
+    <%= form_with model: @game_user, url: game_users_path, method: :delete do |form| %>
+      <%= form.hidden_field :users_id, value:current_user.id  %>
+      <%= form.hidden_field :games_id, value:game.id  %>
+      <%= form.submit 'Leave Game' %>
+    <% end %>
+  <% elsif current_players_count >= game.player_count %>
+    <%= "This game already has #{game.player_count} players" %><br>
+  <% else %>
+    <%= form_with model: @game_user, url: game_users_path do |form| %>
+      <%= form.hidden_field :users_id, value:current_user.id  %>
+      <%= form.hidden_field :games_id, value:game.id  %>
+      <%= form.submit "Join Game" %>
+    <% end %>
   <% end %>
 </section>
   
