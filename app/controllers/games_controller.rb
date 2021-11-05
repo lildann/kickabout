@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :find_game, only: [:show] 
 
   def index
-    @games = Game.all
+    @games = Game.all.order("datetime")
     @game_user = GameUser.new
   end
 
@@ -12,10 +12,10 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-		@game.user_id = current_user.id
+    @game.user_id = current_user.id
     if @game.save
       redirect_to games_path
-    else 
+    else
       render :new
     end
   end

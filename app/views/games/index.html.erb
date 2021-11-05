@@ -1,6 +1,8 @@
-<h1>KickAbout</h1>
+<%= render "layouts/navbar" %>
+<%= link_to 'Sign out' , destroy_user_session_path, method: :delete %>
 
-<%= link_to 'Add a game', new_game_path %><br><br>
+<h1>KickAbout</h1>
+<br><br>
 
 
 <% @games.each do |game| %>
@@ -11,9 +13,9 @@
   <%= "WHEN: #{game.datetime.localtime.strftime("%d/%m/%y @ %H:%M") }" %><br>
   <%= "INFO: #{game.description}" %><br>
   <%= form_with model: @game_user, url: game_users_path do |form| %>
-    <%= form.hidden_field :users_id, value:current_user.id  %>
+    <%= form.hidden_field :user_id, value:current_user.id  %>
     <%= form.hidden_field :games_id, value:game.id  %>
     <%= form.submit "Join Game" %>
-  <% end %>
+  <% end %><br>
 <% end %> 
 
