@@ -1,11 +1,21 @@
 <section>
-Add a game<br><br>
+
 <%= form_with model: @game, url: games_path, :html => {:class => 'form'} do |form| %>
-  <%= form.label :player_count, "Number of players:" %><%= form.number_field :player_count, class: %w(input_text), placeholder: "Number of Players" %><br><br>
-  <%= form.label :location, "Location:" %><%= form.text_field :location, class: %w(input_text), placeholder: "Location" %><br><br>
-  <%= form.label :date, "Date and time:" %><%= form.datetime_field :datetime, class: %w(input_text), placeholder: "Date and time" %><br><br>
-  <%= form.label :description, "Description:" %><%= form.text_field :description, class: %w(input_text), placeholder: "Description" %><br><br>
-  <%= form.submit "Add Game" %>
+	<h3>Add a game</h3>
+
+  <%= form.label :player_count, "Number of players:", class: %w(sr-only) %>
+	<%= form.number_field :player_count, class: %w(input_text), placeholder: "Number of Players" %><br><br>
+  
+	<%= form.label :location, "Location:", class: %w(sr-only) %>
+	<%= form.text_field :location, class: %w(input_text), placeholder: "Location" %><br><br>
+  
+	<%= form.label :date, "Date and time:", class: %w(sr-only)  %>
+	<%= form.datetime_field :datetime, class: %w(input_text), placeholder: "Date and time" %><br><br>
+  
+	<%= form.label :description, "Description:", class: %w(sr-only)  %>
+	<%= form.text_field :description, class: %w(input_text), placeholder: "Description" %><br><br>
+  
+	<%= form.submit "Add Game", class: %w(form-btn)  %>
 <% end %>
 </section>
 
