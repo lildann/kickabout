@@ -1,0 +1,27 @@
+<%= render "layouts/navbar" %>
+<%= link_to 'Sign out' , destroy_user_session_path, method: :delete %>
+
+<h1><%= "#{current_user.first_name}'s Profile" %></h1>
+<br><br>
+
+<% game_ids = GameUser.where(users_id: current_user.id).pluck(:games_id) %>
+
+<h2>Upcoming Games</h2>
+<% game_ids.each do |game_id| %>
+  <% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
+  <% if game[0][2] >= Date.today %>
+    <%= "#{game[0][0].to_i / 2} aside on #{game[0][2]} at #{game[0][1]}" %>
+    <br><br>
+  <% end %>
+<% end %>
+
+<h2>Past Games</h2>
+<% game_ids.each do |game_id| %>
+  <% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
+   <% if game[0][2] < Date.today %>
+    <%= "#{game[0][0].to_i / 2} aside on #{game[0][2]} at #{game[0][1]}" %>
+    <br><br>
+  <% end %>
+<% end %>
+
+

@@ -8,6 +8,14 @@ class GameUsersController < ApplicationController
 		@game_user = GameUser.new
 	end
 
+	def profile
+
+	end
+
+	def show
+
+	end
+
 	def create
 		GameUser.new(game_user_params).save
 		redirect_back fallback_location: games_url
