@@ -13,10 +13,11 @@ class GameUsersController < ApplicationController
 		redirect_back fallback_location: games_url
 	end
 
-	def leave
-		puts "Leaving Now!"
-		delete from GameUser.where(games_id: params[games_user][games_id], 
+	def destroy
+		@scheduled_games = GameUser.where(games_id: params["game_user"]["games_id"], 
 			users_id: current_user.id)
+			@scheduled_games.each { |game| game.destroy }
+			redirect_back fallback_location: games_url
 	end
 
   private
