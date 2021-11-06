@@ -10,7 +10,7 @@
 <% game_ids.each do |game_id| %>
   <% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
   <% if game[0][2] >= Date.today %>
-    <%= "#{game[0][0].to_i / 2} aside on #{game[0][2]} at #{game[0][1]}" %>
+    <%= "#{game[0][0].to_i / 2} aside on #{game[0][2].localtime.strftime("%d/%m/%y @ %H:%M")} at #{game[0][1]}" %>
     <br><br>
   <% end %>
 <% end %>
@@ -19,7 +19,7 @@
 <% game_ids.each do |game_id| %>
   <% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
    <% if game[0][2] < Date.today %>
-    <%= "#{game[0][0].to_i / 2} aside on #{game[0][2]} at #{game[0][1]}" %>
+    <%= "#{game[0][0].to_i / 2} aside on #{game[0][2].localtime.strftime("%d/%m/%y")} at #{game[0][1]}" %>
     <br><br>
   <% end %>
 <% end %>
