@@ -10,7 +10,10 @@
 <% game_ids.each do |game_id| %>
   <% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
   <% if game[0][2] >= Date.today %>
+    <% organiser = User.where(id: game[0][3]).pluck(:first_name, :last_name) %>
     <%= "#{game[0][0].to_i / 2} aside on #{game[0][2].localtime.strftime("%d/%m/%y @ %H:%M")} at #{game[0][1]}" %>
+    <br>
+    <%= "Organised by #{organiser[0][0]} #{organiser[0][1][0]}." %>
     <br><br>
   <% end %>
 <% end %>
@@ -19,7 +22,21 @@
 <% game_ids.each do |game_id| %>
   <% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
    <% if game[0][2] < Date.today %>
+    <% organiser = User.where(id: game[0][3]).pluck(:first_name, :last_name) %>
+    <% player_ids = GameUser.where(games_id: game_id).pluck(:users_id) %>
+    <% players = [] %>
+    <% player_ids.each do |id| %>
+      <% players << User.where(id: id).pluck(:first_name, :last_name) unless id == current_user.id%>
+    <% end %>
+    <% played_with = "" %>
+    <% players.each do |player| %>
+      <% played_with << "#{player[0][0]} #{player[0][1][0]}. " %>
+    <% end %>
     <%= "#{game[0][0].to_i / 2} aside on #{game[0][2].localtime.strftime("%d/%m/%y")} at #{game[0][1]}" %>
+    <br>
+    <%= "Organised by #{organiser[0][0]} #{organiser[0][1][0]}." %>
+        <br>
+    <%= "You played with #{played_with}" %>
     <br><br>
   <% end %>
 <% end %>
