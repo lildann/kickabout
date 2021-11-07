@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable  
          
   has_many :game_users
+  has_many :posts
   has_many :games, :through => :game_users
 
 end

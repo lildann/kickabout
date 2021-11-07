@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   }
   root to: "home#index"
   resources :games
+  resources :posts
   resources :game_users
-
-
-
 end
