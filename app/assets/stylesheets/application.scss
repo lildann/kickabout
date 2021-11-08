@@ -7,6 +7,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Raleway', sans-serif;
+	z-index: 5;
 }
 
 .sr-only {
@@ -24,19 +25,31 @@ body{
 	height: 100vh;
 }
 
-.landing-container{
-	@include page-image('landing-page.jpeg');
-	height: 100vh;
+.landing-page-container{
+	@include page-image('landing-page.png');
+	display:grid;
+	grid-template-columns: repeat(5,1fr)
 }
 
 .landing-banner{
 	@include banner ($orange-fade, #A27315);
 	margin-left: 75%;
+	padding: 0.5rem;
+	display:grid;
+	grid-template-rows: 2fr 1fr;
+	align-items: center;
+	justify-items: end;
+}
+.landing-btn{
+	@include button($grey)
 }
 
 .form{
 	@include flex;
 	@include container;
+}
+.field{
+	@include flex;
 }
 .input_text{
 	border: 2px solid $orange;
@@ -44,9 +57,13 @@ body{
 	border-radius: 5px;
 	width:80%;
 	margin: 10px;
+	padding: 0.5%;
 }
 .form-btn{
 	@include button($orange)
+}
+.link{
+	color: $black;
 }
 
 .game-container{
@@ -54,3 +71,13 @@ body{
 	width:25%;
 }
 
+.game-page-container{
+	@include page-image('home-page.png');
+}
+.add-game-page-container{
+	@include page-image('home-page.png');
+}
+
+.about-page-container{
+	@include page-image('about-page.png');
+}
