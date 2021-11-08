@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   patch 'games/:id', to: 'games#update'
   resources :posts
   resources :game_users
+  resources :about
 end
