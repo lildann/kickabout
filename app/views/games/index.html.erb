@@ -1,9 +1,9 @@
+
 <%= render "layouts/navbar" %>
 <%= link_to 'Sign out' , destroy_user_session_path, method: :delete %>
 
 <h1>KickAbout</h1>
 <br><br>
-
 <% @games.each do |game| %>
 <section class="game-container">
   
@@ -15,7 +15,9 @@
   <p>INFO: <strong><%= game.description %></strong><br><br>
 
   <% if GameUser.where(users_id: current_user.id, games_id: game.id).exists? %>
+
     <%= form_with model: @game_user, url: "/game_users/:id(#{current_user.id}:format)", method: :delete do |form| %>
+
       <%= form.hidden_field :users_id, value:current_user.id  %>
       <%= form.hidden_field :games_id, value:game.id  %>
       <%= form.submit 'Leave Game' %>
