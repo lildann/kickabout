@@ -1,5 +1,5 @@
 <section>
-<%= form_with model: @game, url: games_path, :html => {:class => 'form'} do |form| %>
+<%= form_with model: @game, :html => {:class => 'form'} do |form| %>
 	<h3>Edit game info</h3>
 
   <%= form.label :player_count, "Number of players:", class: %w(sr-only) %>

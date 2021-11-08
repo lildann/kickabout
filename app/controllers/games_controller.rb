@@ -27,10 +27,11 @@ class GamesController < ApplicationController
   end
 
   def update
+    puts "Are you updating??"
     if @game.update(game_params)
       redirect_to games_path
     else
-      render :edit #routing error
+      render :edit 
     end
   end
 
