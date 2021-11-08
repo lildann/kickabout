@@ -1,3 +1,4 @@
+
 <%= render "layouts/navbar" %>
 <%= link_to 'Sign out' , destroy_user_session_path, method: :delete %>
 
@@ -43,6 +44,8 @@
     <%= form.label :"Share your highlights of the game:", { class: "form-label"}%>
     <%= form.text_field :post_text, { class: "form-control"} %>
     <%= form.file_field :image, class: "form-control" %>
+     <%= form.hidden_field :user_id, value:current_user.id  %>
+      <%= form.hidden_field :games_id, value:game_id  %>
     <%= form.submit "Submit", class: "btn btn-primary"%>
 <% end %>
 

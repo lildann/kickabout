@@ -6,8 +6,14 @@ class GamesController < ApplicationController
     @game_user = GameUser.new
   end
 
+  def show
+  end
+
   def new
     @game = Game.new
+  end
+
+  def edit 
   end
 
   def create
@@ -20,7 +26,13 @@ class GamesController < ApplicationController
     end
   end
 
-  def show
+  def update
+    puts "I'm UPDATING"
+    if @game.update(game_params)
+      redirect_to @game
+    else
+      render :edit #routing error
+    end
   end
 
   def edit
@@ -44,6 +56,12 @@ class GamesController < ApplicationController
 		@current_players = GameUser.where(games_id:
 			params["game_user"]["games_id"])
 	end
+
+  def destroy
+    puts "I'm DESTROYING >:)"
+    @game.destroy
+    redirect_to games_path #routing error
+  end
 
   private
 
