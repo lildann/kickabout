@@ -30,16 +30,16 @@
       <%= form.hidden_field :games_id, value:game.id  %>
       <%= form.submit 'Join Game' %>
     <% end %>
-  </div>
+
+  </div> 
+  <% end %>
 
   <div id="edit/delete-links">
     <% if current_user.id == game.user_id %>
 	    <%= link_to 'Edit info', edit_game_path(game.id) %><br>
 		  <%= link_to 'Cancel game', game_path(game.id), method: :delete, data: { confirm: "This will delete the game and notify the players" } %>
     <% end %>
-  </div>  
-  <% end %>
+  </div> 
 </section>
-
 <% end %> 
 

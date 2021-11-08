@@ -35,6 +35,23 @@ class GamesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    puts "Are you updating??"
+    if @game.update(game_params)
+      redirect_to games_path
+    else
+      render :edit 
+    end
+  end
+
+  def destroy
+    @game.destroy
+    redirect_to games_path 
+  end
+
 	def find_players
 		@current_players = GameUser.where(games_id:
 			params["game_user"]["games_id"])
