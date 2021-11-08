@@ -2,7 +2,6 @@
 	background-image: url($image);
 	background-size: cover;
 }
-
 @mixin banner($colour, $dropShadow){
 	height: 100%;
 	background-color: $colour;
