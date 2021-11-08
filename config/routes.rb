@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   }
   root to: "home#index"
   resources :games
+  resources :game
+  patch 'games/:id', to: 'games#update'
   resources :posts
   resources :game_users
 end

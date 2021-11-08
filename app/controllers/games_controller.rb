@@ -27,8 +27,9 @@ class GamesController < ApplicationController
   end
 
   def update
+    puts "I'm UPDATING"
     if @game.update(game_params)
-      redirect_to games_path
+      redirect_to @game
     else
       render :edit #routing error
     end
@@ -40,6 +41,7 @@ class GamesController < ApplicationController
 	end
 
   def destroy
+    puts "I'm DESTROYING >:)"
     @game.destroy
     redirect_to games_path #routing error
   end
