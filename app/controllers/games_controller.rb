@@ -26,20 +26,10 @@ class GamesController < ApplicationController
     end
   end
 
-  def update
-    puts "I'm UPDATING"
-    if @game.update(game_params)
-      redirect_to @game
-    else
-      render :edit #routing error
-    end
-  end
-
   def edit
   end
 
   def update
-    puts "Are you updating??"
     if @game.update(game_params)
       redirect_to games_path
     else
@@ -56,12 +46,6 @@ class GamesController < ApplicationController
 		@current_players = GameUser.where(games_id:
 			params["game_user"]["games_id"])
 	end
-
-  def destroy
-    puts "I'm DESTROYING >:)"
-    @game.destroy
-    redirect_to games_path #routing error
-  end
 
   private
 
