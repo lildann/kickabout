@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_04_155119) do
+ActiveRecord::Schema.define(version: 2021_11_07_144215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "game_players", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "games_id", null: false
-    t.bigint "users_id", null: false
-    t.index ["games_id"], name: "index_game_players_on_games_id"
-    t.index ["users_id"], name: "index_game_players_on_users_id"
-  end
 
   create_table "game_users", force: :cascade do |t|
     t.integer "games_id"
@@ -42,6 +33,16 @@ ActiveRecord::Schema.define(version: 2021_11_04_155119) do
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "post_text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "games_id", null: false
+    t.index ["games_id"], name: "index_posts_on_games_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -56,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_155119) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "game_players", "games", column: "games_id"
-  add_foreign_key "game_players", "users", column: "users_id"
   add_foreign_key "games", "users"
+  add_foreign_key "posts", "games", column: "games_id"
+  add_foreign_key "posts", "users"
 end

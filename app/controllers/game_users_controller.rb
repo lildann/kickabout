@@ -8,15 +8,24 @@ class GameUsersController < ApplicationController
 		@game_user = GameUser.new
 	end
 
+	def profile
+
+	end
+
+	def show
+
+	end
+
 	def create
 		GameUser.new(game_user_params).save
 		redirect_back fallback_location: games_url
 	end
 
-	def leave
-		puts "Leaving Now!"
-		delete from GameUser.where(games_id: params[games_user][games_id], 
+	def destroy
+		@scheduled_games = GameUser.where(games_id: params["game_user"]["games_id"], 
 			users_id: current_user.id)
+			@scheduled_games.each { |game| game.destroy }
+			redirect_back fallback_location: games_url
 	end
 
   private
