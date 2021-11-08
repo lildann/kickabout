@@ -1,6 +1,7 @@
 @mixin page-image($image) {
 	background-image: url($image);
 	background-size: cover;
+	height: 100vh;
 }
 @mixin banner($colour, $dropShadow){
 	height: 100%;
@@ -9,6 +10,7 @@
 	position: absolute;
 	width:20%;
 	padding: 10% 5%;
+	z-index: 0;
 }
 @mixin button($colour) {
 	background-color: $colour;

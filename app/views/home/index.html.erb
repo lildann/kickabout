@@ -2,10 +2,18 @@
 <% if user_signed_in? %>
 	<% controller.redirect_to "/games" %>
 <% else %>
-<section class="landing-container"><br>
+<section class="landing-page-container"><br>
 	<%= link_to 'Sign out' , destroy_user_session_path, method: :delete %>
 	<%= link_to 'Sign in' , new_user_session_path %>
 	<%= link_to 'Sign up' , new_user_registration_path %>
-	<section class="landing-banner"></section>
+	<section class="landing-banner">
+		<p>
+			Making football more accessible to everyone outside of a traditionally male audience.
+			Creating community through sport .
+		</p>
+		<section>
+			
+		</section>
+	</section>
 </section>
 <%end%>
