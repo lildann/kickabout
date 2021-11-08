@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
 	def new
 		puts "Hello ALL!"
-		@posts = Posts.new
+		@post = Post.new
 	end
 
 	def show
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   private
 
   def posts_params
-		puts "This is what I've got: #{@post}"
+		puts "This is what I've got: #{params[:post]}"
     params.permit(:games_id, :user_id, :post_text)
   end
 

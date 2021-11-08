@@ -4,11 +4,7 @@
 
 <h1>KickAbout</h1>
 <br><br>
-
-
-
 <% @games.each do |game| %>
-
 <section class="game-container">
   
   <% current_players_count = GameUser.where(games_id: game.id).count %>
@@ -16,12 +12,12 @@
   <p>PLAYERS: <strong><%= "#{current_players_count} / #{game.player_count}" %></strong><br>
   <p>LOCATION: <strong><%= game.location %></strong><br>
   <p>WHEN: <strong><%= game.datetime.localtime.strftime("%d/%m/%y @ %H:%M") %></strong><br>
-  <p>INFO: <strong><%= game.description %></strong><br>
+  <p>INFO: <strong><%= game.description %></strong><br><br>
 
   <% if GameUser.where(users_id: current_user.id, games_id: game.id).exists? %>
-    <%= form_with model: @game_user, url: game_users_path, method: :delete do |form| %>
-              # Resolve conflict in testing line 20 and 22
-    <%#= form_with model: @game_user, url: "/game_users/:id(#{current_user.id}:format)", method: :delete do |form| %>
+
+    <%= form_with model: @game_user, url: "/game_users/:id(#{current_user.id}:format)", method: :delete do |form| %>
+
       <%= form.hidden_field :users_id, value:current_user.id  %>
       <%= form.hidden_field :games_id, value:game.id  %>
       <%= form.submit 'Leave Game' %>
@@ -29,11 +25,23 @@
   <% elsif current_players_count >= game.player_count %>
     <%= "This game already has #{game.player_count} players" %><br>
   <% else %>
+
+  <div id="join-game-btn">
     <%= form_with model: @game_user, url: game_users_path do |form| %>
       <%= form.hidden_field :users_id, value:current_user.id  %>
       <%= form.hidden_field :games_id, value:game.id  %>
       <%= form.submit 'Join Game' %>
     <% end %>
+
+  </div> 
   <% end %>
+
+  <div id="edit/delete-links">
+    <% if current_user.id == game.user_id %>
+	    <%= link_to 'Edit info', edit_game_path(game.id) %><br>
+		  <%= link_to 'Cancel game', game_path(game.id), method: :delete, data: { confirm: "This will delete the game and notify the players" } %>
+    <% end %>
+  </div> 
 </section>
+<% end %> 
 
