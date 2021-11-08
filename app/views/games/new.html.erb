@@ -1,5 +1,9 @@
 
+<br>
+<%= link_to 'Back', :back %>
+
 <section class="add-game-page-container">
+
 <%= form_with model: @game, url: games_path, :html => {:class => 'form'} do |form| %>
 	<h3>Add a game</h3>
 
