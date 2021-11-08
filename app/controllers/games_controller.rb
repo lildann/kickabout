@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :find_game, only: [:show] 
+  before_action :find_game, only: [:show, :edit, :update, :destroy] 
 
   def index
     @games = Game.all.order("datetime")
@@ -21,6 +21,23 @@ class GamesController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    puts "Are you updating??"
+    if @game.update(game_params)
+      redirect_to games_path
+    else
+      render :edit 
+    end
+  end
+
+  def destroy
+    @game.destroy
+    redirect_to games_path 
   end
 
 	def find_players
