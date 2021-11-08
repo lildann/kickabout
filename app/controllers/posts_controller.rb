@@ -21,7 +21,7 @@ class PostsController < ApplicationController
 
   def posts_params
 		puts "This is what I've got: #{params[:post]}"
-    params.permit(:games_id, :user_id, :post_text)
+    params.permit(:games_id, :user_id, :post_text, :image)
   end
 
 end
