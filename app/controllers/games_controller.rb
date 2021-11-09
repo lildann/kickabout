@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :find_game, only: [:show, :edit, :update, :destroy] 
+  before_action :find_game, only: [:show, :edit, :update, :destroy, :game_confirmation] 
 
   def index
     @games = Game.all.order("datetime")
@@ -43,9 +43,16 @@ class GamesController < ApplicationController
   end
 
 	def find_players
-		@current_players = GameUser.where(games_id:
-			params["game_user"]["games_id"])
+		@current_players = GameUser.where(games_id: params["game_user"]["games_id"])
 	end
+
+  # def game_confirmation
+  #   confirmation = TwilioSms.new
+  #   p "CAN YOU SEE THIS!" 
+  #   p confirmation
+  #   confirmation.send_text
+  # end
+
 
   private
 
@@ -57,6 +64,3 @@ class GamesController < ApplicationController
     params.require(:game).permit(:location, :description, :player_count, :datetime, :user_id)
   end
 end
-
-
-  

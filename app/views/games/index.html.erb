@@ -17,15 +17,15 @@
   <% if GameUser.where(users_id: current_user.id, games_id: game.id).exists? %>
 
     <%= form_with model: @game_user, url: "/game_users/:id(#{current_user.id}:format)", method: :delete do |form| %>
-
       <%= form.hidden_field :users_id, value:current_user.id  %>
       <%= form.hidden_field :games_id, value:game.id  %>
       <%= form.submit 'Leave Game' %>
     <% end %>
+
   <% elsif current_players_count >= game.player_count %>
     <%= "This game already has #{game.player_count} players" %><br>
-  <% else %>
 
+  <% else %>
   <div id="join-game-btn">
     <%= form_with model: @game_user, url: game_users_path do |form| %>
       <%= form.hidden_field :users_id, value:current_user.id  %>
@@ -43,6 +43,11 @@
     <% end %>
   </div> 
 </section>
+
+ <% if current_players_count == game.player_count %>
+    <% TwilioSms.send_text %>
+  <% end %>
+
 <% end %> 
 
 </section>
