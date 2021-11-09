@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "User can create a game", type: :feature do
-  scenario "Adding a new game" do
+RSpec.feature "User can join a game", type: :feature do
+  scenario "Can join a new game only once" do
 		visit "/users/sign_up"
     fill_in "user_email", with: "test@email.com"
     fill_in "user_password", with: "password123"
@@ -14,7 +14,9 @@ RSpec.feature "User can create a game", type: :feature do
     fill_in "Number of players:", with: "10"
     fill_in "Date and time", with: "2022-11-12 18:00:00"
     click_button "Add Game"
-    expect(page.current_path).to eq "/games"
-    expect(page).to have_content "TestLocation"
+    click_button "Join Game"
+    click_button "Leave Game"
+    expect(page).to have_selector(:link_or_button, "Join Game")
+    expect(page).to have_content "PLAYERS: 0 / 10"
   end
 end
