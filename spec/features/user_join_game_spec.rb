@@ -12,10 +12,10 @@ RSpec.feature "User can join a game", type: :feature do
     fill_in "Location:", with: "TestLocation"
     fill_in "Description:", with: "TestDescription"
     fill_in "Number of players:", with: "10"
-    fill_in "Date and time:", with: "01/01/2025, 12:00"
-    click_button "Add game"
-    click_button "Join game"
-    click_button "Join game"
+    fill_in "Date and time", with: "2022-11-12 18:00:00"
+    click_button "Add Game"
+    click_button "Join Game"
+    expect(page).not_to have_selector(:link_or_button, "Join Game")
     expect(page).to have_content "PLAYERS: 1 / 10"
   end
 end
