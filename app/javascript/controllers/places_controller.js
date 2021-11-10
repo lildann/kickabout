@@ -23,8 +23,8 @@ export default class extends Controller {
 
     this.map = new google.maps.Map(this.mapTarget, {
 
-      center: new google.maps.LatLng(this.data.get("latitude") || 51.5, this.data.get("longitude") || -0.12),
-      zoom: (this.data.get("latitude") == null) ? 7 : 17
+      center: new google.maps.LatLng(51.5,-0.12),
+      zoom: 7
     })
     this.autocomplete = new google.maps.places.Autocomplete(this.fieldTarget)
     this.autocomplete.bindTo('bounds', this.map)

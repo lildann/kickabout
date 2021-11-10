@@ -1,19 +1,23 @@
 
 <section class="game-page-container">
 <%= render "layouts/navbar" %>
-<form name="distance_picker" id="distance_picker" >
-  Show me games within: <select name="distance" >
-    <option value = 5 selected = "selected" > 5 miles </option>
-    <option value = 2 > 2 miles </option>
-    <option value = 10 > 10 miles </option>
-    <option value = 15 > 15 miles </option>
-    <option value = 20 > 20 miles </option>
-  </select>
-<% @location = Geokit::LatLng.new(current_user.latitude,current_user.longitude) %>
-<% @games_filtered = Game.within(5, :origin => @location) %>
 
 <h1>KickAbout</h1>
 <br><br>
+Show me games within:
+
+<%= @distance = select_tag(:distance, options_for_select([
+  ['2 miles', 2], 
+  ['5 miles', 5], 
+  ['10 miles', 10], 
+  ['15 miles', 15], 
+  ['20 miles', 20]
+  ], 5)) %>
+
+  
+<% @location = Geokit::LatLng.new(current_user.latitude,current_user.longitude) %>
+<% @games_filtered = Game.within(10, :origin => @location) %>
+
 <% @games_filtered.each do |game| %>
 <section class="game-container">
   
