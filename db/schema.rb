@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_09_171359) do
+ActiveRecord::Schema.define(version: 2021_11_10_104647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,13 +63,6 @@ ActiveRecord::Schema.define(version: 2021_11_09_171359) do
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
-  create_table "image_elements", force: :cascade do |t|
-    t.bigint "post_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_image_elements_on_post_id"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string "post_text"
     t.datetime "created_at", precision: 6, null: false
@@ -88,10 +81,12 @@ ActiveRecord::Schema.define(version: 2021_11_09_171359) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "first_name"
-    t.string "last_name"
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
+    t.string "location"
+    t.string "telephone"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -99,7 +94,6 @@ ActiveRecord::Schema.define(version: 2021_11_09_171359) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "games", "users"
-  add_foreign_key "image_elements", "posts"
   add_foreign_key "posts", "games", column: "games_id"
   add_foreign_key "posts", "users"
 end
