@@ -9,3 +9,8 @@ export function myFunction() {
   }
 }
 
+export default class extends Controller{
+
+
+}
+
