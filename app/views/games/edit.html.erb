@@ -1,5 +1,5 @@
 <section>
-<%= form_with model: @game, local: true, url: games_path, data: { controller: "places", action: "google-maps-callback@window->places#initMap", places_latitude: @game.longitude, places_latitude: @game.longitude }, :html => {:class => 'form'} do |form| %>
+<%= form_with model: @game, local: true, data: { controller: "places", action: "google-maps-callback@window->places#initMap", places_latitude: @game.longitude, places_latitude: @game.longitude }, :html => {:class => 'form'} do |form| %>
 	<h3>Edit game info</h3>
 
 	<%= form.label :player_count, "Number of players:", class: %w(sr-only) %>
@@ -18,6 +18,6 @@
 	<%= form.hidden_field :longitude, data: { target: "places.longitude" }   %>
 
 	<div data-places-target="map" style="height:400px;width:400px"></div>
-	<%= form.submit "Add Game", class: %w(form-btn)  %>
+	<%= form.submit "Edit Game", class: %w(form-btn)  %>
 <% end %>
 </section>
