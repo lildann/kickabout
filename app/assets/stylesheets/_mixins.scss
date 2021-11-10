@@ -8,8 +8,7 @@
 	background-color: $colour;
 	box-shadow: 8px 8px 16px $dropShadow;
 	position: absolute;
-	width:20%;
-	padding: 10% 5%;
+	width: 13rem;
 	z-index: 0;
 }
 @mixin button($colour) {
@@ -30,3 +29,14 @@
 	border-radius: 20px;
 	padding: 1%;
 }
+@mixin left-right-margin($rem) {
+	margin-left: $rem;
+	margin-right: $rem;
+}
+
+
+
+
+
+
+

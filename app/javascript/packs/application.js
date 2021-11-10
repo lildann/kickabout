@@ -7,20 +7,14 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "controllers"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-export function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-import "controllers"
+
+
 
 window.initMap = function(...args) {
 	 const event = document.createEvent("Events")
