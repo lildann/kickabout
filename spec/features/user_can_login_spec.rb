@@ -6,6 +6,6 @@ RSpec.feature "User can login", type: :feature do
     sign_up
 		click_on 'Sign out'
     login
-    expect(page.current_path).to eq '/'
+    expect(page.current_path).to eq '/games'
   end
 end
