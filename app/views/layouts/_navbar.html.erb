@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="topnav" id="myTopnav">
-<br>
   <a href="games" class="active">Home</a>
   <a href="game_users/profile">Profile</a>
   <a href="/about">About</a>
@@ -9,6 +8,5 @@
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
-  	<%= link_to 'Sign out' , destroy_user_session_path, method: :delete %>
-
+  <%= link_to 'Sign out' , destroy_user_session_path, method: :delete %>
 </div>

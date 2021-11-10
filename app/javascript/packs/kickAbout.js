@@ -3,14 +3,21 @@
 
 function openLogin(){
 	const loginForm = document.getElementById('login_form')
-	loginForm.style.display = "block"
+	if(loginForm.style.display = "block"){
+		loginForm.style.display == "none"
+	}else{
+		loginForm.style.display == "block"
+	}
 }
 function openSignup(){
 	const signUpForm = document.getElementById('sign_up_form')
-	signUpForm.style.display = "block"
+	if(signUpForm.style.display == "none"){
+		signUpForm.style.display == "block"
+	}else{
+		signUpForm.style.display == "none"
+	}
 }
 
-console.log("Im here")
 window.openLogin = openLogin
 window.openSignup = openSignup
 
