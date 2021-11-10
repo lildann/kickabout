@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Modak&family=Raleway:wght@100;400;500;700&display=swap');
 @import '_variables.scss';
 @import '_mixins.scss';
@@ -34,14 +35,34 @@ body{
 .landing-banner{
 	@include banner ($orange-fade, #A27315);
 	margin-left: 75%;
-	padding: 0.5rem;
 	display:grid;
 	grid-template-rows: 2fr 1fr;
-	align-items: center;
-	justify-items: end;
 }
+.landing-btn-section{
+	@include flex;
+	align-items: end;
+	@include left-right-margin(1rem);
+}
+
+p{
+	font-weight: 600;
+	font-size: 1.2rem;
+	@include left-right-margin(1rem);
+	align-self: end;
+	text-align: end;
+	margin-bottom: 1.5rem;
+}
+
 .landing-btn{
-	@include button($grey)
+	@include button($grey);
+	padding: 5%;
+	width:50%;
+	margin: 4%;
+	font-weight: 600;
+}
+.landing-form{
+	margin: 0 auto;
+	display: none;
 }
 
 .form{
@@ -81,3 +102,5 @@ body{
 .about-page-container{
 	@include page-image('about-page.png');
 }
+
+

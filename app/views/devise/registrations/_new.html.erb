@@ -1,0 +1,42 @@
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { controller: "places", action: "google-maps-callback@window->places#initMap" }, :html => {:class => 'form'}) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+	<h2>Sign up</h2>
+
+
+	<%= f.label :first_name, class: %w(sr-only) %><br />
+	<%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: %w(input_text), placeholder: "First name" %>
+
+	
+	<%= f.label :last_name, class: %w(sr-only) %><br />
+	<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: %w(input_text), placeholder: "Last name" %>
+
+
+	<%= f.label :location, "Your Location:", class: %w(sr-only) %>
+	<%= f.search_field :location, class: %w(input_text), placeholder: "Your Location", data: { target: "places.field", action: "keydown->places#keydown" } %><br><br>
+
+	<%= f.hidden_field :latitude, data: { target: "places.latitude" } %>
+	<%= f.hidden_field :longitude, data: { target: "places.longitude" }   %>
+
+	<%= f.label :email, class: %w(sr-only) %><br />
+	<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: %w(input_text) %>
+
+  
+	<%= f.label :password, class: %w(sr-only) %>
+		<% if @minimum_password_length %>
+		<em>(<%= @minimum_password_length %> characters minimum)</em>
+		<% end %><br />
+	<%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: %w(input_text)  %>
+
+
+	<%= f.label :password_confirmation, class: %w(sr-only) %><br />
+	<%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password", class: %w(input_text) %>
+
+  	<div data-places-target="map" style="height:400px;width:400px"></div>
+
+  <%= f.submit "Sign up", class: %w(form-btn) %>
+
+	<%= render "devise/shared/links" %>
+<% end %>
+
+
