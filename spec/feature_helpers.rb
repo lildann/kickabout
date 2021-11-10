@@ -15,3 +15,12 @@ def login
   click_button "Log in"
 end
 
+def add_game
+  click_link "Add a game"
+  fill_in "Location:", with: "TestLocation"
+  fill_in "Description:", with: "TestDescription"
+  fill_in "Number of players:", with: "10"
+  fill_in "Date and time", with: "2022-11-12 18:00:00"
+  click_button "Add Game"
+end
+

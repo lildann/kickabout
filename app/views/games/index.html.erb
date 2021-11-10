@@ -4,7 +4,21 @@
 
 <h1>KickAbout</h1>
 <br><br>
-<% @games.each do |game| %>
+Show me games within:
+
+<%= @distance = select_tag(:distance, options_for_select([
+  ['2 miles', 2], 
+  ['5 miles', 5], 
+  ['10 miles', 10], 
+  ['15 miles', 15], 
+  ['20 miles', 20]
+  ], 5)) %>
+
+  
+<% @location = Geokit::LatLng.new(current_user.latitude,current_user.longitude) %>
+<% @games_filtered = Game.within(10, :origin => @location) %>
+
+<% @games_filtered.each do |game| %>
 <section class="game-container">
   
   <% current_players_count = GameUser.where(games_id: game.id).count %>
@@ -13,7 +27,7 @@
   <p>LOCATION: <strong><%= game.location %></strong><br>
   <p>WHEN: <strong><%= game.datetime.localtime.strftime("%d/%m/%y @ %H:%M") %></strong><br>
   <p>INFO: <strong><%= game.description %></strong><br><br>
-
+ 
   <% if GameUser.where(users_id: current_user.id, games_id: game.id).exists? %>
 
     <%= form_with model: @game_user, url: "/game_users/:id(#{current_user.id}:format)", method: :delete do |form| %>

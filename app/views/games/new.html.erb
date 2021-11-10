@@ -4,14 +4,14 @@
 
 <section class="add-game-page-container">
 
-<%= form_with model: @game, url: games_path, :html => {:class => 'form'} do |form| %>
+<%= form_with model: @game, local: true, url: games_path, data: { controller: "places", action: "google-maps-callback@window->places#initMap", places_latitude: @game.longitude, places_latitude: @game.longitude }, :html => {:class => 'form'} do |form| %>
 	<h3>Add a game</h3>
 
 	<%= form.label :player_count, "Number of players:", class: %w(sr-only) %>
 	<%= form.number_field :player_count, class: %w(input_text), placeholder: "Total number of players" %><br><br>
 	
 	<%= form.label :location, "Location:", class: %w(sr-only) %>
-	<%= form.text_field :location, class: %w(input_text), placeholder: "Location" %><br><br>
+	<%= form.search_field :location, class: %w(input_text), placeholder: "Location", data: { target: "places.field", action: "keydown->places#keydown" } %><br><br>
 	
 	<%= form.label :date, "Date and time:", class: %w(sr-only)  %>
 	<%= form.datetime_field :datetime, class: %w(input_text), placeholder: "Date and time" %><br><br>
@@ -19,7 +19,13 @@
 	<%= form.label :description, "Description:", class: %w(sr-only)  %>
 	<%= form.text_field :description, class: %w(input_text), placeholder: "Description" %><br><br>
 	
+	<%= form.hidden_field :latitude, data: { target: "places.latitude" } %>
+	<%= form.hidden_field :longitude, data: { target: "places.longitude" }   %>
+
+	<div data-places-target="map" style="height:400px;width:400px"></div>
 	<%= form.submit "Add Game", class: %w(form-btn)  %>
 <% end %>
+
+
 </section>
 
