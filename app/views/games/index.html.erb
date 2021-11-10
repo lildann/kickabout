@@ -1,10 +1,20 @@
 
 <section class="game-page-container">
 <%= render "layouts/navbar" %>
+<form name="distance_picker" id="distance_picker" >
+  Show me games within: <select name="distance" >
+    <option value = 5 selected = "selected" > 5 miles </option>
+    <option value = 2 > 2 miles </option>
+    <option value = 10 > 10 miles </option>
+    <option value = 15 > 15 miles </option>
+    <option value = 20 > 20 miles </option>
+  </select>
+<% @location = Geokit::LatLng.new(current_user.latitude,current_user.longitude) %>
+<% @games_filtered = Game.within(5, :origin => @location) %>
 
 <h1>KickAbout</h1>
 <br><br>
-<% @games.each do |game| %>
+<% @games_filtered.each do |game| %>
 <section class="game-container">
   
   <% current_players_count = GameUser.where(games_id: game.id).count %>
@@ -13,7 +23,7 @@
   <p>LOCATION: <strong><%= game.location %></strong><br>
   <p>WHEN: <strong><%= game.datetime.localtime.strftime("%d/%m/%y @ %H:%M") %></strong><br>
   <p>INFO: <strong><%= game.description %></strong><br><br>
-
+ 
   <% if GameUser.where(users_id: current_user.id, games_id: game.id).exists? %>
 
     <%= form_with model: @game_user, url: "/game_users/:id(#{current_user.id}:format)", method: :delete do |form| %>
