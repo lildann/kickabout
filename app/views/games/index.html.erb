@@ -1,19 +1,22 @@
 
 <section class="game-page-container">
 	<%= render "layouts/navbar" %>
+	<div class="dropdown">
+		
 
-	Show me games within:
-
-	<%= form_with do |f| %>
-		<%= f.select :distance,[
-			['2 miles', 2], 
-			['5 miles', 5], 
-			['10 miles', 10], 
-			['15 miles', 15], 
-			['20 miles', 20]
-			]%>
-		<%= f.submit 'see games'%>
-	<% end %>
+		<%= form_with do |f| %>
+			<%= f.label 'Show me games within:', class: %w(label) %>
+			<%= f.select :distance,[
+				['2 miles', 2], 
+				['5 miles', 5], 
+				['10 miles', 10], 
+				['15 miles', 15], 
+				['20 miles', 20]
+				], :selected => @distance, class: %w(input-text) %>
+			<%= f.submit 'see games', class: %w(form-btn) %>
+		<% end %>
+	</div>
+	
 
 	<% @location = Geokit::LatLng.new(current_user.latitude,current_user.longitude) %>
 	<% @games_filtered = Game.within(@distance, :origin => @location) %>
@@ -48,7 +51,7 @@
 						</table>        
 					</section>
 				
-					<section>
+					<section class="game-options">
 						<% if GameUser.where(users_id: current_user.id, games_id: game.id).exists? %>
 						<%= form_with model: @game_user, url: "/game_users/:id(#{current_user.id}:format)", method: :delete do |form| %>
 							<%= form.hidden_field :users_id, value:current_user.id  %>
@@ -73,10 +76,10 @@
 
 						<% end %>
 
-						<div id="edit/delete-links">
+						<div id="edit/delete-links" class="game-options">
 							<% if current_user.id == game.user_id %>
-								<%= link_to 'Edit info', edit_game_path(game.id) %><br>
-								<%= link_to 'Cancel game', game_path(game.id), method: :delete, data: { confirm: "This will delete the game and notify the players" } %>
+								<%= link_to 'Edit info', edit_game_path(game.id), class: %w(link) %><br>
+								<%= link_to 'Cancel game', game_path(game.id), class: %w(link), method: :delete, data: { confirm: "This will delete the game and notify the players" } %>
 							<% end %>
 						</div> 
 					</section>	
