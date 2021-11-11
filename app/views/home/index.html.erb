@@ -4,26 +4,28 @@
 <% if user_signed_in? %>
 <% controller.redirect_to "/games" %>
 <% else %>
-<section class="landing-page-container"><br>
-<%= link_to 'Sign out' , destroy_user_session_path, method: :delete %>
-<%= link_to 'Sign in' , new_user_session_path %>
-<%= link_to 'Sign up' , new_user_registration_path %>
-<section class="landing-banner">
-	<p>
-		Making football more accessible to everyone outside of a traditionally male audience.
-		Creating community through sport .
-	</p>
-	<section class="landing-btn-section">
-		<button class="landing-btn" onclick="openLogin()" id="login">Log in</button>
-		<button class="landing-btn" onclick="openSignup()" id="sign_up">Sign up</button>
+<section class="landing-page-container">
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<h1 class="landing">Kickabout</h1>
+	<section class="landing-banner">
+
+		<p>
+			Making football more accessible to everyone outside of a traditionally male audience.
+			Creating community through sport.
+		</p>
+		<section class="landing-btn-section">
+			<button class="landing-btn" onclick="openLogin()" id="login">Log in</button>
+			<button class="landing-btn" onclick="openSignup()" id="sign_up">Sign up</button>
+		</section>
+	</section> 
+
+	<section class="landing-form" id="login_form">
+		<%= render "/devise/sessions/new" %>
+	</section>
+	<section class="landing-form" id="sign_up_form" >
+		<%= render "devise/registrations/new" %>
 	</section>
 </section>
-</section>
 
-<section class="landing-form" id="login_form">
-<%= render "/devise/sessions/new" %>
-</section>
-<section id="sign_up_form" class="landing-form">
-<%= render "devise/registrations/new" %>
-</section>
 <%end%>

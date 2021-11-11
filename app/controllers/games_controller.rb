@@ -3,6 +3,8 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all.order("datetime")
+		@distance = params[:distance] || 5
+		p params
     @game_user = GameUser.new
   end
 
