@@ -1,5 +1,4 @@
 
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form'}) do |f| %>
   <h2>Log in</h2>
 	
@@ -22,7 +21,8 @@
 
   <%= f.submit "Log in", class: %w(form-btn) %>
 
-	<%= render "devise/shared/links" %>
+	<%= link_to "Forgot your password?", new_password_path(resource_name), class: %w(link)  %><br />
+	
 <% end %>
 
 
