@@ -91,9 +91,9 @@ body{
 	border: 2px solid $orange;
 	box-sizing: border-box;
 	border-radius: 5px;
-	width:80%;
+	width:100%;
 	margin: 10px;
-	padding: 0.5%;
+	padding: 2%;
 }
 .form-btn{
 	@include button($orange)
@@ -158,6 +158,10 @@ body{
 // }
 .add-game-page-container{
 	@include page-image('home-page.png');
+	.form{
+		padding:5%;
+		margin-top: 10%;
+	}
 }
 
 .about-page-container{
@@ -194,8 +198,9 @@ body{
 .sign-up-details{
 	display: grid;
 	grid-template-columns: repeat(2,1fr);
-	justify-items: center;
+	justify-items: center;;
 	align-items: center;
+	grid-column-gap: 10%;
 }
 .about-container{
 	@include page-image('about-page.png');
