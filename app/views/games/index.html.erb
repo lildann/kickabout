@@ -21,22 +21,28 @@
 			<section class="game-container">
 				<section class="game-details">
 					<% current_players_count = GameUser.where(games_id: game.id).count %>
-					<section>
-						<p>GAME: </p>
-						<p>PLAYERS: </p>
-						<p>LOCATION: </p>
-						<br>
-						<p>WHEN: </p>
-						<p>INFO: </p>
-					</section>
-					<section>
-						<p><strong><%= game.player_count / 2 %> ASIDE</strong></p>
-						<p><strong><%= "#{current_players_count} / #{game.player_count}" %></strong></p>
-						<p><strong><%= game.location %></strong></p>
-						<p><strong><%= game.datetime.localtime.strftime("%d/%m/%y @ %H:%M") %></strong></p>
-						<p><strong><%= game.description %></strong></p>
-					</section>
-					
+					<table>
+						<tr>
+							<td>GAME:</td>
+							<td><strong><%= game.player_count / 2 %> ASIDE</strong></td>
+						</tr>
+						<tr>
+							<td>PLAYERS:</td>
+							<td><strong><%= "#{current_players_count} / #{game.player_count}" %></strong></td>
+						</tr>
+						<tr>
+							<td>LOCATION:</td>
+							<td><strong><%= game.location %></strong></td>
+						</tr>
+						<tr>
+							<td>WHEN: </td>
+							<td><strong><%= game.datetime.localtime.strftime("%d/%m/%y @ %H:%M") %></strong></td>
+						</tr>
+						<tr>
+							<td>INFO:</td>
+							<td><strong><%= game.description %></strong></td>
+						</tr>
+					</table>        
 				</section>
 			
 				<section>

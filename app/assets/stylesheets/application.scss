@@ -24,7 +24,6 @@
 
 body{
 	height: 100vh;
-	overflow: hidden;
 }
 h1{
 	font-family: "Bungee Shade", sans-serif;
@@ -111,7 +110,7 @@ h1{
 }
 .game-page-container{
 	@include page-image('home-page.png');
-	height: 100vh;
+	height: 100%;
 }
 .games-container{
 	height:100%;
@@ -122,7 +121,7 @@ h1{
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	padding: 2%;
-	width: 40%;
+	width: 80%;
 	justify-items: center;
 	align-items: center;
 	margin:2%;
@@ -145,7 +144,7 @@ h1{
 }
 .game-details{
 	display: grid;
-	grid-template-columns: 1fr 2fr;
+	grid-template-columns: 5fr 1fr;
 }
 .add-game-page-container{
 	@include page-image('home-page.png');
@@ -155,4 +154,7 @@ h1{
 	@include page-image('about-page.png');
 }
 
-
+.profile-page-container{
+	@include page-image('profile-page.jpeg');
+	background-attachment: fixed;
+}
