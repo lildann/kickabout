@@ -1,68 +1,78 @@
 
-<br>
-<%= link_to 'Back', :back %>
-<%= link_to 'Sign out' , destroy_user_session_path, method: :delete %>
+<section class="profile-container">
+<%= render "layouts/navbar" %>
+	<h1><%= "#{current_user.first_name}'s Profile" %></h1>
 
-<h1><%= "#{current_user.first_name}'s Profile" %></h1>
-<br><br>
+	<% game_ids = GameUser.where(users_id: current_user.id).pluck(:games_id) %>
+	<section class="profile-games-container">
+	#if we add a filter here the blank box will disappear
+		<section>
+			<h2>Upcoming Games</h2>
+			<% game_ids.each do |game_id| %>
+			<section class="profile-games">
+				<% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
+				<% if game[0][2] >= Date.today %>
+					<p><% organiser = User.where(id: game[0][3]).pluck(:first_name, :last_name) %></p>
+					<p><%= "#{game[0][0].to_i / 2} aside on #{game[0][2].localtime.strftime("%d/%m/%y @ %H:%M")} at #{game[0][1]}" %></p>
+					<p><%= "Organised by #{organiser[0][0]} #{organiser[0][1][0]}." %></p>
+				<% end %>
+			</section>	
+			<% end %>
+			
+			
+		</section>
 
-<% game_ids = GameUser.where(users_id: current_user.id).pluck(:games_id) %>
+		<section>
+			<h2>Past Games</h2>
+			<section class="profile-games">
+				<% game_ids.each do |game_id| %>
+					<% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
+					<% if game[0][2] < Date.today %>
+						<% organiser = User.where(id: game[0][3]).pluck(:first_name, :last_name) %>
+						<% player_ids = GameUser.where(games_id: game_id).pluck(:users_id) %>
+						<% players = [] %>
+						<% player_ids.each do |id| %>
+							<% players << User.where(id: id).pluck(:first_name, :last_name) unless id == current_user.id%>
+						<% end %>
+						<% played_with = "" %>
+						<% players.each do |player| %>
+							<% played_with << "#{player[0][0]} #{player[0][1][0]}. " %>
+						<% end %>
+						<%= "#{game[0][0].to_i / 2} aside on #{game[0][2].localtime.strftime("%d/%m/%y")} at #{game[0][1]}" %>
+						<br>
+						<%= "Organised by #{organiser[0][0]} #{organiser[0][1][0]}." %>
+								<br>
+						<%= "You played with #{played_with}" %>
+						<br>
+						<% @post_list = Post.where(games_id: game_id) %>
+						<% @post_list.each do |post| %>
+							<% @user = User.where(id: post.user_id)[0] %>
+							<%= "#{@user.first_name} #{@user.last_name[0]} posted: " %><br>
+							<% if post.image.attached? %>
+								<%= image_tag(post.image, width: 150) %>
+								<br>
+							<% end %>
+							<%= post.post_text %><br>
+							<small><%= post.created_at.strftime("%B %d %Y @ %l:%M%P") %></small><br><br>
+						<% end %>	
+						<%= form_with model: @posts, url: posts_path do |form| %>
+							<%= form.label :"Share your highlights of the game:", { class: "form-label"}%>
+							<%= form.text_field :post_text, { class: "form-control"} %><br>
+							<%= form.label :"Upload your game photos:", { class: "form-label"}%>
+							<%= form.file_field :image, class: "form-control" %><br>
+							<%= form.hidden_field :user_id, value:current_user.id  %>
+							<%= form.hidden_field :games_id, value:game_id  %>
+							<%= form.submit "Submit", class: "btn btn-primary"%>
+						<% end %>
+					<% end %>
+				<% end %>
+			</section>
+			
+		</section>
+	</section>
+</section>
 
-<h2>Upcoming Games</h2>
-<% game_ids.each do |game_id| %>
-  <% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
-  <% if game[0][2] >= Date.today %>
-    <% organiser = User.where(id: game[0][3]).pluck(:first_name, :last_name) %>
-    <%= "#{game[0][0].to_i / 2} aside on #{game[0][2].localtime.strftime("%d/%m/%y @ %H:%M")} at #{game[0][1]}" %>
-    <br>
-    <%= "Organised by #{organiser[0][0]} #{organiser[0][1][0]}." %>
-    <br><br>
-  <% end %>
-<% end %>
 
-<h2>Past Games</h2>
-<% game_ids.each do |game_id| %>
-  <% game = Game.where(id: game_id).pluck(:player_count, :location, :datetime, :user_id) %>
-   <% if game[0][2] < Date.today %>
-    <% organiser = User.where(id: game[0][3]).pluck(:first_name, :last_name) %>
-    <% player_ids = GameUser.where(games_id: game_id).pluck(:users_id) %>
-    <% players = [] %>
-    <% player_ids.each do |id| %>
-      <% players << User.where(id: id).pluck(:first_name, :last_name) unless id == current_user.id%>
-    <% end %>
-    <% played_with = "" %>
-    <% players.each do |player| %>
-      <% played_with << "#{player[0][0]} #{player[0][1][0]}. " %>
-    <% end %>
-    <%= "#{game[0][0].to_i / 2} aside on #{game[0][2].localtime.strftime("%d/%m/%y")} at #{game[0][1]}" %>
-    <br>
-    <%= "Organised by #{organiser[0][0]} #{organiser[0][1][0]}." %>
-        <br>
-    <%= "You played with #{played_with}" %>
-    <br>
-    <% @post_list = Post.where(games_id: game_id) %>
-    <% @post_list.each do |post| %>
-      <% @user = User.where(id: post.user_id)[0] %>
-      <%= "#{@user.first_name} #{@user.last_name[0]} posted: " %><br>
-      <% if post.image.attached? %>
-        <%= image_tag(post.image, width: 150) %>
-        <br>
-      <% end %>
-      <%= post.post_text %><br>
-      <small><%= post.created_at.strftime("%B %d %Y @ %l:%M%P") %></small><br><br>
-    <% end %>
-<%= form_with model: @posts, url: posts_path do |form| %>
-    <%= form.label :"Share your highlights of the game:", { class: "form-label"}%>
-    <%= form.text_field :post_text, { class: "form-control"} %><br>
-    <%= form.label :"Upload your game photos:", { class: "form-label"}%>
-    <%= form.file_field :image, class: "form-control" %><br>
-    <%= form.hidden_field :user_id, value:current_user.id  %>
-    <%= form.hidden_field :games_id, value:game_id  %>
-    <%= form.submit "Submit", class: "btn btn-primary"%>
-<% end %>
 
-    <br><br>
-  <% end %>
-<% end %>
 
 

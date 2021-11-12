@@ -1,22 +1,27 @@
 @mixin page-image($image) {
 	background-image: url($image);
 	background-size: cover;
-	height: 100vh;
+	position: fixed;
+	top:0;
+	z-index: 1;
+	width:100%;
+	height:100%;
+	repeat: repeat-x;	 
 }
 @mixin banner($colour, $dropShadow){
-	height: 100%;
+	height: 100vh;
 	background-color: $colour;
 	box-shadow: 8px 8px 16px $dropShadow;
 	position: absolute;
-	width:20%;
-	padding: 10% 5%;
+	width: 13rem;
 	z-index: 0;
 }
 @mixin button($colour) {
 	background-color: $colour;
 	border-radius: 5px;
 	border: none;
-	padding:1%;
+	padding: 1%;
+	transition: box-shadow 50ms;
 }
 @mixin flex {
 	display: flex;
@@ -28,5 +33,13 @@
 	background-color: $white;	
 	box-shadow: 8px 8px 16px #A27315;
 	border-radius: 20px;
-	padding: 1%;
+	padding: 10%;
 }
+@mixin left-right-margin($rem) {
+	margin-left: $rem;
+	margin-right: $rem;
+}
+
+
+
+
