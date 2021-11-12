@@ -79,6 +79,10 @@ body{
 	display: none;
 	grid-row: 2/5;
 }
+#sign_up_form{
+	margin-bottom: 30%;
+	width:60%
+}
 
 .form{
 	@include flex;
@@ -160,7 +164,9 @@ body{
 	@include page-image('home-page.png');
 	.form{
 		padding:5%;
-		margin-top: 10%;
+		margin:auto;
+		margin-top: 8%;
+		width:50%;
 	}
 }
 

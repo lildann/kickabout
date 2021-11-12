@@ -5,11 +5,11 @@
 
 	<section class="sign-up-details">
 		<section>
-			<%= f.label :first_name, class: %w(sr-only) %><br />
+			<%= f.label :first_name, class: %w(sr-only) %>
 			<%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: %w(input_text), placeholder: "First name" %>
 
 			
-			<%= f.label :last_name, class: %w(sr-only) %><br />
+			<%= f.label :last_name, class: %w(sr-only) %>
 			<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: %w(input_text), placeholder: "Last name" %>
 
 
@@ -19,14 +19,14 @@
 			<%= f.hidden_field :latitude, data: { target: "places.latitude" } %>
 			<%= f.hidden_field :longitude, data: { target: "places.longitude" }   %>
 
-			<%= f.label :email, class: %w(sr-only) %><br />
+			<%= f.label :email, class: %w(sr-only) %>
 			<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: %w(input_text) %>
 
 			
 			<%= f.label :password, class: %w(sr-only) %>
 			<%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: %w(input_text)  %>
 
-			<%= f.label :password_confirmation, class: %w(sr-only) %><br>
+			<%= f.label :password_confirmation, class: %w(sr-only) %>
 			<%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password", class: %w(input_text) %>
 
 		</section>
