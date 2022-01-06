@@ -7,8 +7,7 @@ Making football more accessible to everyone outside of a traditional male audien
 [![Daniel](images/github-logo.png)](https://github.com/Legal-Dan) Daniel | [![Jordan](images/github-logo.png)](https://github.com/jordanveness) Jordan | [![Shakira](images/github-logo.png)](https://github.com/rhianekobar) Shakira | [![Lilly](images/github-logo.png)](https://github.com/lildann) Lilly 
 
 ## Run Through 
-App demonstration begins at 5.30
-[Kickabout Presentation](https://drive.google.com/file/d/1ncL-M8ReYK1MoS18YFDta_l3b7Za30tp/view?usp=sharing)
+[Kickabout demonstration](https://drive.google.com/file/d/1ncL-M8ReYK1MoS18YFDta_l3b7Za30tp/view?usp=sharing) begins at 5.30
 
 
 ## Planning
@@ -48,7 +47,7 @@ I want to be able to sign up to join a game
 
 ### Figma Layout Designs
 
-We used Figma to visualise KickAbout and plan the layout and features, you can find it [here](https://www.figma.com/file/7GFETOsGVeKdzKqbFdL3Dz/KickAbout?node-id=0%3A1)
+We used Figma to visualise KickAbout and plan the layout and features:
 ![Sign up page](images/signup.png)
 ![All games page](images/allgames.png)
 
