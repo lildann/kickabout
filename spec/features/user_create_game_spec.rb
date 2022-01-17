@@ -6,6 +6,9 @@ RSpec.feature "User can create a game", type: :feature do
 		sign_up
     add_game
     expect(page.current_path).to eq "/games"
-    expect(page).to have_content "TestLocation"
+    expect(page).to have_content "TestDescription"
   end
 end
+
+
+
